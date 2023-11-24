@@ -1,0 +1,58 @@
+#arrowtest{
+	width:400px;height:250px;background:orange;margin:2em
+}
+
+#arrowtest > div{
+	width: 100%;
+	height: 100%;
+	/* overflow: hidden; */
+	transform-origin: left top;
+	transform:  translate(100%,0) scale(3,1);
+}
+
+#arrowtest > div > div{
+	
+	background: blue;
+	height: calc(100% / 1.4142135623730951 );
+	width: calc( (250/ (4*1.4142135623730951)) * 1% );
+	transform-origin: left top;
+	transform: rotate(45deg);
+}
+
+
+
+
+.flag:nth-child(4n-1){
+	clear: both;
+}
+
+.flag{
+	position: relative;
+	width: 10em;
+	margin: 0 .5em .5em 0;
+	float: left;
+	/* box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.26); */
+	border: 1px solid black;
+}
+
+.flag > .ratio{
+	position: relative;
+	width: 100%;
+	/* background-color: gold; */
+}
+
+.flag > .content{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/* background: red; */
+	/* background: orange; */
+}
+
+.flag > .content > .block{
+	/* border: 1px solid black;
+	border-color: rgba(0,0,0,0.2);
+	box-sizing: border-box; */
+}

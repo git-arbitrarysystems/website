@@ -1,0 +1,12 @@
+.vscode
+.git
+.DS_Store
+log
+.ssh
+.local
+.cache
+files
+phptmp
+sftp.json
+webdav.passwd
+.config

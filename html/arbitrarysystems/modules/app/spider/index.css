@@ -1,0 +1,117 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+}
+
+iframe{
+	box-sizing: border-box;
+}
+
+textarea{
+	width: 100%;
+	box-sizing: border-box;
+	margin: 1em 0 0 0;
+	min-height: 128px;
+}
+
+#last-image img{
+	max-height: 200px;
+}
+
+#url{
+	font-size: 2em;
+	font-weight: bold;
+	overflow: hidden;
+	display: block;
+	white-space: nowrap;
+}
+
+.left{
+	background: #cff;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50%;
+	height: 75%;
+	overflow: auto;
+}
+
+#result{
+	white-space: pre-wrap;
+	overflow: auto;
+}
+
+#curl{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50%;
+	height: 70%;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+
+
+#view{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 50%;
+	height: 25%;
+
+	border-right:  0;
+	border-left: 0;
+	border-bottom: 0;
+}
+
+#header{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 50%;
+	height: 30%;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+#header > div{
+position: absolute;
+background-color: white;
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+box-sizing: border-box;
+}
+
+#header > .background{
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	background-blend-mode: luminosity;
+	/* background-position: top center; */
+}
+
+#header > .portrait{
+	right: 1em;
+	top: 1em;
+	bottom: 1em;
+	width: 30%;
+	background-color: blue;
+	background-blend-mode: luminosity;
+	box-shadow: 0.5em 0.5em rgba(0,0,0,0.5);
+}
+
+#header > .icon{
+	left: 1em;
+	bottom: 1em;
+	width: 4em;
+	height: 4em;
+	border-radius: 2em;
+	background-color: black;
+	background-blend-mode: luminosity;
+	
+}

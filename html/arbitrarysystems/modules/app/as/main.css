@@ -1,0 +1,165 @@
+
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+.creative-commons{
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* font-weight: bold; */
+    border-radius: 1em;
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    line-height: 2em;
+    text-align: center;
+    font-size: 1em;
+
+}
+
+.site-wrapper{
+	padding: 2.5em;
+	max-width: 800px;
+	margin: 0 auto
+}
+
+@media (max-width: 768px){
+	body, html{
+		/* font-size: 14px; */
+	}
+	.site-wrapper{
+		padding: 1.5em;
+	}
+}
+
+@media (max-width: 640px){
+	body, html{
+		font-size: 13px;
+	}
+	.site-wrapper{
+		padding: 1.5em;
+	}
+}
+
+@media (max-width: 512px){
+	body, html{
+		font-size: 11px;
+	}
+	.site-wrapper{
+		padding: 1.5em;
+	}
+}
+
+
+.site-wrapper h1,
+.site-wrapper h2,
+.site-wrapper h3,
+.site-wrapper h4,
+.site-wrapper h5,
+.site-wrapper h6,
+.site-wrapper h7{
+	margin: 0;
+}
+
+.site-wrapper h1{
+	/* text-align: center; */
+	font-weight: normal;
+	margin: 1em 0;
+}
+
+/*
+	MENU LAYOUT
+*/
+
+.site-wrapper .menu{
+	position: relative;
+	z-index: 100;
+}
+
+.site-wrapper .menu .button{
+	/* background: #eee; */
+	width: 2em;
+	height: 2em;
+	position: relative;
+	cursor: pointer;
+}
+
+
+
+
+.site-wrapper .menu .button.close{
+	float: right;
+}
+
+.site-wrapper .menu ul{
+	/* padding: 0; */
+	width: 100%;
+	float: left;
+	/* margin: 0 0.5em 0.5em 0; */
+	list-style-type: upper-roman;
+	max-height: 0;
+	overflow: hidden;
+	background: white;
+	transition-property: max-height margin padding;
+	transition-duration: 0.2s;
+	box-sizing: border-box;
+	/* margin-block-start: 0.5em; */
+	padding-inline-start: 2em;
+}
+
+.site-wrapper .menu ul li{
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	/* background: #ddd; */
+	/* text-align: center; */
+}
+
+.site-wrapper .menu ul li:nth-child(2n){
+	/* background: #eee; */
+}
+
+.site-wrapper .menu.open ul{
+	max-height: 250px;
+	border-top: 1px dotted gray;
+	border-bottom: 1px dotted gray;
+	/* margin-top: 1em; */
+	/* padding: 1em; */
+}
+
+.site-wrapper .menu .button.close span{
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-top: 1px solid black;
+	transform-origin: 0 0;
+
+	transition-property: transform width opacity;
+	transition-duration: 0.2s;
+
+}
+
+.site-wrapper .menu .button.close span:nth-child(2){
+	top: 50%;
+}
+
+.site-wrapper .menu .button.close span:nth-child(3){
+	top: 100%;
+}
+
+.site-wrapper .menu.open .button.close span:nth-child(1),
+.site-wrapper .menu.close-only .button.close span:nth-child(1){
+	transform: rotate(45deg);
+	width: 141.4%;
+}
+.site-wrapper .menu.open .button.close span:nth-child(2),
+.site-wrapper .menu.close-only .button.close span:nth-child(2){
+	opacity: 0;
+}
+.site-wrapper .menu.open .button.close span:nth-child(3),
+.site-wrapper .menu.close-only .button.close span:nth-child(3){
+	transform: rotate(-45deg);
+	width: 141.4%;
+}
+

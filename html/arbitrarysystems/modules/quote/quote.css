@@ -1,0 +1,41 @@
+blockquote {
+	font-family: Georgia, serif;
+	/* font-style: italic; */
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 0 0 3em;
+	line-height: 1.45;
+	position: relative;
+	margin: 0;
+	color: #383838;
+	border-left: 1em solid #f3f3f3;
+}
+
+blockquote > p:nth-child(1){
+	margin-top: 0;
+	padding-top: 2.5em;
+	box-sizing: border-box;
+}
+
+blockquote:before {
+	display: block;
+	content: "\201C";
+	font-size: 3em;
+	padding-left: 0.25em;
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #7a7a7a;
+}
+
+blockquote cite {
+	color: #999999;
+	font-size: 1em;
+	display: block;
+	box-sizing: border-box;
+	/* padding-top: 0em; */
+}
+ 
+blockquote cite:before {
+	content: "\2014 \2009";
+}

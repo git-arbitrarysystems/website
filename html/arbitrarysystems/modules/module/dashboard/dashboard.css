@@ -1,0 +1,88 @@
+#dashboard{
+	background: white;
+	display: inline-block;
+	padding: 0.5em;
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	height: auto;
+	overflow-x: auto;
+}
+
+
+#dashboard table{
+	border-collapse: collapse;
+	/* margin: 0.5em; */
+	position: relative;
+	width: 100%;
+}
+
+#dashboard table .module{
+	border-top: 1px solid black;
+	background: #ccc;
+}
+
+#dashboard table .module .name{
+	text-align: center;
+}
+
+#dashboard table .requirement{
+	
+}
+
+#dashboard table .state{
+	text-align: center;
+}
+
+#dashboard table .state > div{
+	display: inline-block;
+	width: 0.5em;
+	height: 0.5em;
+	box-sizing: border-box;
+	background: #000;
+	/* margin: 0.5em; */
+	border-radius: 0.5em;
+	border: 1px solid black;
+}
+
+#dashboard table .ready .state > div{
+	background: white;
+}
+
+#dashboard table .error{
+	color: red;
+}
+
+#dashboard table .error .state > div{
+	background: red;
+	border-color: red;
+}
+
+
+#dashboard table thead th{
+	background: white;
+	border: 1px solid black;
+	padding: 0.5em;
+}
+
+#dashboard table tbody{
+	border-right: 1px solid black;
+}
+
+#dashboard table td{
+	text-align: right;
+	border-right: 1px solid black;
+	padding: 0.5em;
+}
+
+#dashboard table td:first-child{
+	border-left: 1px solid black;
+}
+
+#dashboard table tr:last-child td, #dashboard table .module td{
+	border-bottom: 1px solid black;
+}
+
+
+
+

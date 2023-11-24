@@ -1,0 +1,26 @@
+.htmlmodule{
+	/* margin-top: 0.5em; */
+	/* width: 100%; */
+	padding: 1em 2em;
+	box-sizing: border-box;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.htmlmodule_php{
+	padding: .5em;
+	background-color: white;
+	color: darkblue;
+	word-break: break-all;
+	white-space: normal;
+}
+
+.htmlmodule textarea{
+	width: 100%;
+	height: 100px;
+	box-sizing: border-box;
+}
+
+.htmlmodule h4{
+	text-align: right;
+	color: orange;
+}

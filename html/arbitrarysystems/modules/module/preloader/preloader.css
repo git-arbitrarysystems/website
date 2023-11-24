@@ -1,0 +1,49 @@
+#default_preloader{
+	position: absolute;
+	top: 0;
+	/* text-align: right; */
+	width: 100%;
+	/* background-color: #fff; */
+	font-size: 0.7em;
+	/* padding: 0.5em; */
+	z-index: 10000;
+	box-sizing: border-box;
+}
+
+
+
+#dpl_bar{
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	/* border: 1px solid black; */
+	height: 1px;
+	width: 100%;
+}
+
+.dpl_bar_inner{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width:0;
+
+	transition: width 0.2s;
+}
+
+#dpl_bar_inner{
+	background: #999;
+}
+
+#dpl_bar_inner_err{
+	background: #f99;
+	width: 0;
+}
+
+#dpl_bar_label{
+	margin-top: 0.5em;
+	margin-left: 0.5em;
+	color: #999;
+	/* padding: 0.33em 0.33em 0 0.33em; */
+}
+

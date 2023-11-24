@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spider</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+
+	<div class="left">
+
+		<span id="url"></span><br/>
+
+		
+		<button onclick="spider.auto = !spider.auto; if( spider.auto ) spider.next();">auto</button>
+		<button onclick="spider.rand();">rand()</button>
+		<button onclick="spider.get();">get()</button>
+		<button onclick="spider.randget();">randget()</button>
+		<input type="text" id="urlmod" />
+
+		<div id="last-image"></div>
+
+		<h4>queue</h4>
+		<textarea id="queue"></textarea>
+		<button onclick="spider.follow();" id="follow">follow</button>
+		<h4>imagequeue</h4>
+		<textarea id="imagequeue"></textarea>
+		<button onclick="spider.test();" id="test">test</button>
+		<h4>validimages: <span id="count"></span></h4>
+		<textarea id="found"></textarea>
+		
+		<p id="links"></p>
+		<p id="result">result</p>
+		
+	</div>
+	
+	<iframe id="view" sandbox="allow-same-origin allow-forms allow-presentation" src=""></iframe>
+
+	<iframe id="curl" src=""></iframe>
+	<div id="header">
+		<div class="background"></div>
+		<div class="portrait"></div>
+		<div class="icon"></div>
+	</div>
+
+
+	<script type="text/javascript">
+
+		(function(){
+			var curl = './curl_v2.php',
+				url,
+				alfabet = 'abcdefghijklmonpqrstuvwxyz',
+				domains = ['com','org','net','nl', 'de'];
+
+			var el_url = document.getElementById('url'),
+				el_curl = document.getElementById('curl'),
+				el_view = document.getElementById('view'),
+				el_result = document.getElementById('result'),
+				el_urlmod = document.getElementById('urlmod'),
+				el_links = document.getElementById('links'),
+				el_queue = document.getElementById('queue'),
+				el_imagequeue = document.getElementById('imagequeue'),
+				el_count = document.getElementById('count'),
+				el_found = document.getElementById('found'),
+				el_last = document.getElementById('last-image'),
+
+				header = document.getElementById('header'),
+				header_background = header.getElementsByClassName('background')[0],
+				header_portrait = header.getElementsByClassName('portrait')[0],
+				header_icon = header.getElementsByClassName('icon')[0];
+
+			var queue = [],
+				imagequeue = [],
+				validimages = [],
+				sortedimages = {
+					background:[],
+					portrait:[],
+					icon:[],
+					other:[]
+				};
+
+			var register = [];
+			function registered(url){
+				if( register.indexOf(url) === -1 ){
+					register.push(url);
+					return false;
+				}else{
+					return true;
+				}
+			}
+
+
+			urlmod.addEventListener('change', function(){
+				
+				url = this.value;
+				el_url.innerHTML = url;
+				el_urlmod.value = url;
+
+				if( !registered(url) ){
+					get();
+				}else{
+					randget();
+				}
+
+				
+			})
+
+			function rand(){
+				url = 'http://';
+				for(var i=0;i<3;i++){
+					url += alfabet.charAt( Math.floor(Math.random()*alfabet.length) );
+				}
+				url += '.';
+				url += domains[ Math.floor(Math.random()*domains.length) ];
+
+				el_url.innerHTML = url;
+				el_urlmod.value = url;
+
+			}
+
+			function randget(after){
+				rand();
+				if( !registered(url) ){
+					get(after);
+				}else{
+					randget(after);
+				}
+			}
+
+			function follow(after){
+				if( queue.length > 0 ){
+					
+					url = queue.splice(0,1)[0];
+					
+					el_url.innerHTML = url;
+					el_urlmod.value = url;
+
+					el_queue.value = queue.join('\n');
+					get(after);
+				}
+			}
+
+
+			
+
+			function sortimage(src, img){
+				validimages.push(src);
+
+				var w = img.naturalWidth || img.width,
+					h = img.naturalHeight || img.height;
+
+				var rectangular = Math.abs(w-h) < Math.sqrt(w*h) * 0.05, // 5% Variation rectangular
+					portrait = h > w * 0.9,
+					banner = w > h,
+					pattern = ( w < 8 || h <8 ) && (w > 100 || h > 100 );
+
+				var short = Math.min(w,h),
+					long = Math.max(w,h);
+
+				var big = w > h * 1.5 && w >= 256,
+					tiny = w < 32 || h < 32,
+					small = !tiny && w*h < 128*128,
+					medium = !big && !tiny && !small;
+
+
+				if( big ){
+					sortedimages.background.push(src);
+					if( window.console ) console.log('sortedimages', w, h, 'background');
+				}else if( medium ){
+					sortedimages.portrait.push(src);
+					if( window.console ) console.log('sortedimages', w, h, 'portrait');
+				}else if( small ){
+					sortedimages.icon.push(src);
+					if( window.console ) console.log('sortedimages', w, h, 'icon');
+				}else{
+					sortedimages.other.push(src);
+					if( window.console ) console.log('sortedimages', w, h, 'other');
+				}
+
+
+				insert();
+
+			}
+
+
+
+			function insert(){
+				if( sortedimages.background.length > 0 ){
+					header_background.style.backgroundImage = 'url('+sortedimages.background.splice(0,1)[0]+')'
+				}
+				if( sortedimages.portrait.length > 0 ){
+					header_portrait.style.backgroundImage = 'url('+sortedimages.portrait.splice(0,1)[0]+')'
+				}
+				if( sortedimages.icon.length > 0 ){
+					header_icon.style.backgroundImage = 'url('+sortedimages.icon.splice(0,1)[0]+')'
+				}
+			}
+
+			function test(after){
+				if( imagequeue.length > 0 ){
+					var src = imagequeue.splice(0,1)[0];
+					el_imagequeue.value = imagequeue.join('\n');
+
+					var img = document.createElement('img');
+					img.onload = function(){
+						//if( window.console ) console.log('image.LOADED', src, img.naturalWidth, img.naturalHeight, img.width, img.height );
+
+						if( img.naturalWidth || img.width ){
+							sortimage(src, img)
+							el_found.innerHTML = validimages.join('\n');
+							el_count.innerHTML = validimages.length;
+
+							while( el_last.children.length > 0 ){
+								el_last.removeChild( el_last.children[0] );
+							}
+							el_last.appendChild( img );
+
+						}
+
+						if( after ) after.call(this);
+					}
+					img.onerror = function(){
+						if( window.console ) console.log('image.ERROR', src);
+						if( after ) after.call(this);
+					}
+					img.src = src;
+				}
+			}
+
+			function get(after){
+
+				el_view.src = '';
+				el_curl.src = '';
+
+				setTimeout( function(){
+					el_view.src = url;
+					el_curl.src = curl + '?url=' + url + '&format=html';
+				}, 200)
+
+				
+
+				
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET',  curl + '?url=' + url , true );
+				xhr.onload = function() {
+					if( window.console ) console.log('xhr.load', xhr.status, xhr.readyState);
+					if (xhr.status === 200 && xhr.readyState === 4) {
+						
+						var json;
+						try{
+							json = JSON.parse(xhr.responseText);
+							window.spider.json = json;
+						}catch(e){
+							el_result.innerHTML = 'JSON.parse.ERROR ' + xhr.responseText;
+						}
+
+						el_result.innerHTML = xhr.responseText;
+
+						var string = '', i;
+						
+						if( json ){
+
+							if( window.console ) console.log('JSON', json);
+
+							string += '<h4>images</h4>';
+							for(i=0;i<json.images.length;i++){
+								string += '<a href="'+json.images[i]+'" target="_blank">'+json.images[i]+'</a><br/>';
+
+								if( !registered(json.images[i]) ){
+									if( imagequeue.indexOf(json.images[i]) === -1 ) imagequeue.push(json.images[i])
+								}
+								
+
+							}
+							string += '<h4>links</h4>';
+							for(i=0;i<json.links.length;i++){
+								string += '<a href="'+json.links[i]+'" target="_blank">'+json.links[i]+'</a><br/>';
+								if( !registered(json.links[i]) ){
+									if( queue.indexOf(json.links[i]) === -1 ) queue.push(json.links[i]);
+								}
+							}
+						}
+
+						el_links.innerHTML = string;
+						el_queue.value = queue.join('\n');
+						el_imagequeue.value = imagequeue.join('\n');
+						
+						if( after ) after.call(this);
+
+
+					}
+				}
+				xhr.onerror = function(){
+					el_result.innerHTML = 'XMLHttpRequest.ERROR ';
+					if( after ) after.call(this);
+				}
+				xhr.send();
+
+
+			}
+
+
+			function next(){
+
+				function after(){ next(); }
+				if( spider.auto === false ) after = false;
+
+				if( imagequeue.length > 0 ){
+					test(after);
+				}else if( queue.length > 0 ){
+					follow(after)
+				}else{
+					randget(after);
+				}
+			}
+
+
+			window.spider = {
+				auto:true,
+				get:get,
+				randget:randget,
+				rand:rand,
+				follow:follow,
+				test:test,
+				next:next
+			}
+
+			spider.next();
+
+
+		})();
+		
+		
+
+	</script>
+
+</body>
+</html>

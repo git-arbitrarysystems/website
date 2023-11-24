@@ -1,0 +1,15 @@
+
+
+.flag-container{
+	background: #ccc;
+	display: block;
+}
+
+canvas.flag{
+	padding: 1em;
+	box-sizing: border-box;
+	width: 20%;
+	background-color: transparent;
+	display: block;
+	float: left;
+}

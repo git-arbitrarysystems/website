@@ -1,0 +1,63 @@
+/* CSS Document */
+
+body {
+  background-color:#FFFFFF;
+  font-Family:'Verdana';
+  margin-top:0px;
+  margin-left:0px;
+  margin-right:0px;
+  margin-bottom:0px;
+  font-size:12px;
+  text-align: center
+}
+
+img {
+  border: none ;
+  vertical-align:text-top;
+}
+
+
+
+a{
+  text-decoration:none;
+}
+
+a:link {color:#000000;}      /* unvisited link */
+a:visited {color:#000000;}  /* visited link */
+a:hover {color:#FF0000;}  /* mouse over link */
+a:active {color:#000000;}  /* selected link */
+
+a.menuitem{
+  padding-left:20px;
+  padding-right:20px;
+  
+}
+
+
+
+div.box{
+  text-align:left;
+  margin: 0 auto;
+  width:700px;
+ 
+}
+
+div.menu{
+  text-align:center;
+}
+
+div.submenu{
+  width:100%;
+  text-align:left;
+  font-style:italic;
+  font-size:12;
+}
+
+/* the title in the index page */
+span.sub{
+  font-Size:26;
+  color:E8ECEF;
+  font-weight:bold;
+  text-transform: uppercase;
+}
+
