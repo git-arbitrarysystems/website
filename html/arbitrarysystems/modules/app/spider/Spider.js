@@ -47,7 +47,7 @@ Module.export({
 		this.checked = [];
 		this.queue = [];
 		this.images = [];
-		this.get();
+		//this.get();
 
 		window.spider = this;
 	}
