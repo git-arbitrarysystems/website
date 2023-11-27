@@ -28,12 +28,12 @@
                 border: none;
                 pointer-events: all;
                 background: transparent;
-                color: white;
+                color: gray;
                 cursor: pointer;
             }
             #ui button:hover{
                 background: transparent;
-                color: gray;
+                color: white;
             }
         </style>
     </head>
@@ -46,9 +46,9 @@
         </script>
 
         <div id="ui">
-            <button onclick="game.api.delete()">new</button>
-            <button onclick="game.lights.randomizeColors()">clrs</button>
-            <a href="https://en.wikipedia.org/wiki/Royal_Game_of_Ur" target="_blank"><button>rules</button></a>
+            <button title="New game" onclick="game.api.delete()">new</button>
+            <button title="Randomize colors" onclick="game.lights.randomizeColors()">clrs</button>
+            <a title="Rules & history" href="https://en.wikipedia.org/wiki/Royal_Game_of_Ur" target="_blank"><button>how</button></a>
         </div>
 
     </body>

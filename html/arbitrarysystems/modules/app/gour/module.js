@@ -23,8 +23,13 @@ Module.export({requires:[
         node.href = '/modules/app/gour/index.html'
         node.innerHTML = `
             The royal game of Ur<br/>
-            <a style="color:#ccc;font-size:0.8em;" target="_blank" href="https://en.wikipedia.org/wiki/Royal_Game_of_Ur">rules on wikipedia</a>
-            <div style="margin-top:2em; font-size:0.8em; color:#ccc;">click to play</div>
+            <div style="margin-bottom:2em; font-size:0.8em; color:#ccc;">
+            A game for two players, click to play.
+           
+            <br/><br/>
+            <a style="color:inherit;" target="_blank" href="https://en.wikipedia.org/wiki/Royal_Game_of_Ur">rules on wikipedia</a>
+            </div>
+            
         `
        
 
