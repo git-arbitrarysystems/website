@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        body{
-            background-color: #000;
-            margin: 0;
-            padding: 0;
-        }
-        #root{
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top:0;
-        }
-        #ui{
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            pointer-events: none;
-            padding:1em;
-            box-sizing: border-box;
-        }
-        #ui button{
-            border: none;
-            pointer-events: all;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-        }
-        #ui button:hover{
-            background: transparent;
-            color: gray;
-        }
-    </style>
+    <head>
+        <style>
+            body{
+                background-color: #000;
+                margin: 0;
+                padding: 0;
+            }
+            #root{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top:0;
+            }
+            #ui{
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                pointer-events: none;
+                padding:1em;
+                box-sizing: border-box;
+            }
+            #ui button{
+                border: none;
+                pointer-events: all;
+                background: transparent;
+                color: white;
+                cursor: pointer;
+            }
+            #ui button:hover{
+                background: transparent;
+                color: gray;
+            }
+        </style>
+    </head>
     <body>
         <div id="root"></div>
         <script type="module">
@@ -46,6 +48,7 @@
         <div id="ui">
             <button onclick="game.api.delete()">new</button>
             <button onclick="game.lights.randomizeColors()">clrs</button>
+            <a href="https://en.wikipedia.org/wiki/Royal_Game_of_Ur" target="_blank"><button>rules</button></a>
         </div>
 
     </body>
