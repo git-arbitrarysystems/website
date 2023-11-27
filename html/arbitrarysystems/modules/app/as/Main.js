@@ -45,6 +45,7 @@ Module.export({
 			]);
 		}else{
 			grid.load([
+				['/modules/app/gour/module.js', {nodeClass:'_5cols _3rows'}],
 				['/modules/app/poker/module.js', {nodeClass:'_5cols _5rows'}],
 				['/modules/app/fun_with_flags/FWF.js', {nodeClass:'_5cols _3rows'}],
 				['/modules/app/spider/Spider.js', {nodeClass:'_5cols fullHeight'}],

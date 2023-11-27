@@ -12,6 +12,7 @@ Module.export({
 	function Spider(options){
 		
 		if( options === undefined ) options = {}
+		if( options.autostart === undefined ) options.autostart = true;
 		if( options.target === undefined ) options.target = document.getElementsByTagName('body')[0];
 		if( window.console ) console.log('Spider.js', options, Spider.data );
 
@@ -47,7 +48,7 @@ Module.export({
 		this.checked = [];
 		this.queue = [];
 		this.images = [];
-		//this.get();
+		if( options.autostart ) this.get();
 
 		window.spider = this;
 	}
