@@ -81316,7 +81316,9 @@ class Main {
         /** Game interactions */
         this.raycaster = new Raycaster();
         document.addEventListener('pointermove', this.onPointerMove);
-        document.addEventListener('pointerdown', this.onPointerDown);
+        document.addEventListener('pointerdown', this.onPointerMove);
+        document.addEventListener('click', this.onPointerDown);
+        document.addEventListener('tap', this.onPointerDown);
 
         /** Create and init API*/
         this.api = this.apiType === 'remote' ? 
@@ -81404,8 +81406,10 @@ class Main {
         /** Stop interaction-listeners */
         this.interactiveObjectsOnce = [];
         window.removeEventListener('resize', this.onWindowResize);
-        document.removeEventListener('pointerdown', this.onPointerDown);
+        document.removeEventListener('pointerdown', this.onPointerMove);
         document.removeEventListener('pointermove', this.onPointerMove);
+        document.removeEventListener('click', this.onPointerDown);
+        document.removeEventListener('tap', this.onPointerDown);
 
         /** Dispose renderer and cleanup DOM */
         if (this.renderer) {
