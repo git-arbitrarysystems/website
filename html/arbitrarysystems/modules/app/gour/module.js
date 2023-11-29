@@ -20,7 +20,7 @@ Module.export({requires:[
         node.style.backgroundPosition = 'center'
 
         //node.target = '_blank'
-        node.href = '/modules/app/gour/index.html'
+        node.href = '/modules/app/gour/site/index.html'
         node.innerHTML = `
             The royal game of Ur<br/>
             <div style="margin-bottom:2em; font-size:0.8em; color:#ccc;">
